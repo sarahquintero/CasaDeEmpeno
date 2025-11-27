@@ -33,8 +33,6 @@ namespace LabBasesII.Data
                 using (var con = DBConnection.GetConnection())
                 {
                     if (con == null) throw new Exception("Error al obtener la conexión.");
-
-                    // Asegurar que la conexión está abierta, aunque el using debería manejarlo.
                     //if (con.State != ConnectionState.Open) con.Open();
 
                     using (var cmd = new OracleCommand(sqlQuery, con))
@@ -50,9 +48,7 @@ namespace LabBasesII.Data
             }
             catch (Exception ex)
             {
-                // Si hay un error, lo verás en un MessageBox al iniciar sesión.
                 MessageBox.Show("Error en DAO: " + ex.Message, "Error de Datos");
-                // Devuelve una tabla vacía si hay un error
                 return new DataTable();
             }
             return dtPrestamos;
